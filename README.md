@@ -1,5 +1,6 @@
 # signature_facturae
 Sign Facturae XML invoices
+http://www.facturae.gob.es/formato/Paginas/politicas-firma-electronica.aspx
 
 # Requires
 composer require robrichards/xmlseclibs
