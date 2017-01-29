@@ -1,9 +1,13 @@
 # signature_facturae
 Sign Facturae XML invoices
+
 http://www.facturae.gob.es/formato/Paginas/politicas-firma-electronica.aspx
 
 # Requires
 composer require robrichards/xmlseclibs
 
-# Test:
+# Test
 For test run: "php.exe signature.php" in same path of sample invoice.
+
+# Validation
+http://sedeaplicaciones2.minetur.gob.es/FacturaE/index.jsp
