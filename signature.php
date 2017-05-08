@@ -52,6 +52,15 @@
 			$DigestValue = $dom->createElement('ds:DigestValue', 'Ohixl6upD6av8N7pEvDABhEL6hM=');
 			$SigPolicyHash->appendChild($DigestValue);
 
+			$SignerRole = $dom->createElement('xades:SignerRole', '');
+			$SignedSignatureProperties->appendChild($SignerRole);
+
+			$SignerCalimedRoles = $dom->createElement('xades:ClaimedRoles', '');
+			$SignerRole->appendChild($SignerCalimedRoles);
+
+			$SignerCalimedRole = $dom->createElement('xades:ClaimedRole', 'emisor');
+			$SignerCalimedRoles->appendChild($SignerCalimedRole);
+
 			return $dom->documentElement;
 		}
 
