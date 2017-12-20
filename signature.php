@@ -70,13 +70,20 @@
 
 			$objXMLSecDSig = new XMLSecurityDSig();
 			$objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::C14N);
-			$objXMLSecDSig->addReference($data, XMLSecurityDSig::SHA1, [self::ENVELOPED], ['force_uri' => true]);
+			$objXMLSecDSig->add509Cert($publicKey);
 
 			$contentSignedProp = self::createSignedPropertiesNode();
 			$objXMLSecDSig->addObject($contentSignedProp);
 
+			$objXMLSecDSig->addReference($data, XMLSecurityDSig::SHA1, [self::ENVELOPED], ['force_uri' => true]);
+
+			$objKeyInfo = $objXMLSecDSig->sigNode->getElementsByTagName('KeyInfo')->item(0);
+			$objXMLSecDSig->addReference($objKeyInfo, XMLSecurityDSig::SHA1, [self::ENVELOPED], ['overwrite' => false]);
+
+			$objSignedProperties = $objXMLSecDSig->sigNode->getElementsByTagName('xades:SignedProperties')->item(0);
+			$objXMLSecDSig->addReference($objSignedProperties, XMLSecurityDSig::SHA1, [self::ENVELOPED], ['overwrite' => false]);
+
 			$objXMLSecDSig->sign($objKey, $data->documentElement);
-			$objXMLSecDSig->add509Cert($publicKey);
 		}
 	}
 
